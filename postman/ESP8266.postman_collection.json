@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "edc25858-1bfc-4ed1-a614-9fe418dc37f8",
+		"name": "ESP8266",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Upload file",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "index.html"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://esp8266.local/files",
+					"protocol": "http",
+					"host": [
+						"esp8266",
+						"local"
+					],
+					"path": [
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get files",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://esp8266.local/files",
+					"protocol": "http",
+					"host": [
+						"esp8266",
+						"local"
+					],
+					"path": [
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete file",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://esp8266.local/files?file=index.html",
+					"protocol": "http",
+					"host": [
+						"esp8266",
+						"local"
+					],
+					"path": [
+						"files"
+					],
+					"query": [
+						{
+							"key": "file",
+							"value": "index.html"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get health",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46ZXNwODI2Ng=="
+					}
+				],
+				"url": {
+					"raw": "http://esp8266.local/health",
+					"protocol": "http",
+					"host": [
+						"esp8266",
+						"local"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Open web panel",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46ZXNwODI2Ng=="
+					}
+				],
+				"url": {
+					"raw": "http://esp8266.local",
+					"protocol": "http",
+					"host": [
+						"esp8266",
+						"local"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set pin state",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "esp8266",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46ZXNwODI2Ng=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "value",
+							"value": "1",
+							"description": "Must be 1 or 0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://esp8266.local/gpio",
+					"protocol": "http",
+					"host": [
+						"esp8266",
+						"local"
+					],
+					"path": [
+						"gpio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get pin state",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "esp8266",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://esp8266.local/gpio",
+					"protocol": "http",
+					"host": [
+						"esp8266",
+						"local"
+					],
+					"path": [
+						"gpio"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

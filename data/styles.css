@@ -1,0 +1,71 @@
+:root {
+    --color-red: #ff0000;
+    --color-green: #248124;
+    --color-black: #0a0a0a;
+    --color-grey: #cccccc;
+    --color-blue: #0606f0;
+}
+
+body {
+    background-color: var(--color-grey);
+    font-family: Arial, Helvetica, Sans-Serif;
+    color: var(--color-blue);
+}
+
+.panel, .widgets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.panel > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+.panel > header .logo {
+    width: 50px;
+    height: 50px;
+}
+
+.widgets > div:first-child {
+    margin-bottom: 10px;
+}
+
+.state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.state.red {
+    background-color: var(--color-red);
+}
+
+.state.green {
+    background-color: var(--color-green);
+}
+
+button {
+    color: var(--color-black);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+button.red {
+    background-color: var(--color-red);
+}
+
+button.green {
+    background-color: var(--color-green);
+}

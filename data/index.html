@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+    <title>ESP8266 Server</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="panel">
+        <header>
+            <img class="logo" src="espressif.svg"/>
+            ESP8266 uptime: <span class="uptime">00:00:00</span>
+        </header>
+
+        <div class="widgets">
+            <div class="state"></div>
+            <div>
+                <button class="toggle-state green" data-state="1">ON</button>
+                <button class="toggle-state red" data-state="0">OFF</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
