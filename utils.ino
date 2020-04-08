@@ -1,4 +1,4 @@
-#include "global.h"
+#include "headers.h"
 
 void setPinState(byte pin, byte state) {
   digitalWrite(pin, !state);
@@ -16,6 +16,7 @@ void startBlynk() {
 }
 
 void SPIFFSInformation() {
+  Serial.println();
   Dir dir = filesystem->openDir("/");
   Serial.println("SPIFFS information:");
 
@@ -25,8 +26,6 @@ void SPIFFSInformation() {
     Serial.printf("%s [%s]\n", fileName.c_str(), formatBytes(fileSize).c_str());
     fileName = String();
   }
-
-  Serial.println();
 }
 
 void ConnectionInformation() {
@@ -38,10 +37,23 @@ void ConnectionInformation() {
   Serial.println(WiFi.localIP());
 
   if (MDNS.begin(HOSTNAME, WiFi.localIP())) {
+    Serial.println("mDNS responder started");
     Serial.print("Open http://");
     Serial.print(HOSTNAME);
-    Serial.println(".in your browser to see it working");
+    Serial.println(".local in your browser to see it working");
+  } else {
+    Serial.println("Error setting up MDNS responder!");
   }
+}
+
+void ServerInformation() {
+  Serial.println();
+  Serial.print("HTTP server started on ");
+  Serial.print(HTTP_PORT);
+  Serial.println(" port");
+
+  Serial.printf("Update server ready! Open http://%s.local%s in your browser.\n",HOSTNAME, UPDATE_PATH);
+  Serial.printf("Use username '%s' and password '%s' for auth\n", UPDATE_USERNAME, UPDATE_PASSWORD);
 }
 
 String formatBytes(size_t bytes) {
@@ -65,6 +77,8 @@ String getContentType(String filename) {
     return "text/css";
   } else if (filename.endsWith(".js")) {
     return "application/javascript";
+  } else if (filename.endsWith(".svg")) {
+    return "image/svg+xml";
   } else if (filename.endsWith(".png")) {
     return "image/png";
   } else if (filename.endsWith(".gif")) {

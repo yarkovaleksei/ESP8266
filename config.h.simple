@@ -1,3 +1,6 @@
+#ifndef CONFIG_DEFINES
+#define CONFIG_DEFINES
+
 #define FIRMWARE_VERSION "1.0.0"    // Версия прошивки
 
 #define STASSID "ssid"              // Имя WiFi сети, к которой должен подключиться контроллер
@@ -14,3 +17,5 @@
 #define UPDATE_PASSWORD "esp8266"   // Пароль для загрузки прошивки
 
 #define LED_PIN 2                   // Номер пина, на котором подключен светодиод
+
+#endif

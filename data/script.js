@@ -51,24 +51,27 @@ function updateState(state) {
     stateContainer.classList.add(className);
 }
 
-function getData(url) {
-    return fetch(url, {headers}).then(response => response.json());
+async function getData(url) {
+    const response = await fetch(url, { headers });
+
+    return await response.json();
 }
 
-function sendData(url, data = {}) {
+async function sendData(url, data = {}) {
     const searchParams = new URLSearchParams();
 
     for (const prop in data) {
         searchParams.set(prop, data[prop]);
     }
 
-    return fetch(url, {
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             ...headers,
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: searchParams,
-      })
-      .then(response => response.json());
+    });
+
+    return await response.json();
 }
