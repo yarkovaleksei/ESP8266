@@ -14,6 +14,7 @@ install:
   - arduino --pref "boardsmanager.additional.urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json" --save-prefs
   # Add custom libraries
   - arduino --install-library "ArduinoJson"
+  - git clone https://github.com/JChristensen/Timer /usr/local/share/arduino/libraries/Timer
   # Install board
   - arduino --install-boards esp8266:esp8266
   # Set board
