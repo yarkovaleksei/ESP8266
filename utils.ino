@@ -1,4 +1,4 @@
-#include "global.h"
+#include "headers.h"
 
 void setPinState(byte pin, byte state) {
   digitalWrite(pin, !state);
@@ -52,7 +52,7 @@ void ServerInformation() {
   Serial.print(HTTP_PORT);
   Serial.println(" port");
 
-  Serial.printf("Update server ready! Open http://%s.local%s in your browser.\n", HOSTNAME, UPDATE_PATH);
+  Serial.printf("Update server ready! Open http://%s.local%s in your browser.\n",HOSTNAME, UPDATE_PATH);
   Serial.printf("Use username '%s' and password '%s' for auth\n", UPDATE_USERNAME, UPDATE_PASSWORD);
 }
 
@@ -63,9 +63,9 @@ String formatBytes(size_t bytes) {
     return String(bytes / 1024.0) + "KB";
   } else if (bytes < (1024 * 1024 * 1024)) {
     return String(bytes / 1024.0 / 1024.0) + "MB";
+  } else {
+    return String(bytes / 1024.0 / 1024.0 / 1024.0) + "GB";
   }
-
-  return String(bytes / 1024.0 / 1024.0 / 1024.0) + "GB";
 }
 
 String getContentType(String filename) {
@@ -96,7 +96,6 @@ String getContentType(String filename) {
   } else if (filename.endsWith(".gz")) {
     return "application/x-gzip";
   }
-
   return "text/plain";
 }
 

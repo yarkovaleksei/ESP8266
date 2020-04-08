@@ -1,13 +1,5 @@
-#include <ESP8266WiFi.h>
-#include <ESP8266mDNS.h>
-#include <ESP8266WebServer.h>
-#include <ESP8266HTTPUpdateServer.h>
-#include <FS.h>
-#include <LittleFS.h>
-#include <ArduinoJson.h>
-
 #include "config.h"
-#include "global.h"
+#include "headers.h"
 
 ESP8266WebServer httpServer(HTTP_PORT);
 FS* filesystem = &LittleFS;
