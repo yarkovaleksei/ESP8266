@@ -59,13 +59,13 @@ void setup() {
   }, routeFileUpload);
   httpServer.on("/files", HTTP_DELETE, routeFileDelete);
   httpServer.on("/files", HTTP_GET, routeFileList);
+  /*
+   * The "/files" route section end
+  */
 
   httpServer.on("/health", HTTP_GET, routeHealth);
   httpServer.on("/gpio", HTTP_GET, routeGetPinState);
   httpServer.on("/gpio", HTTP_POST, routeSetPinState);
-  /*
-   * The "/files" route section end
-  */
 
   httpServer.onNotFound([]() {
     if (!httpServer.authenticate(AUTH_USERNAME, AUTH_PASSWORD)) {
@@ -80,14 +80,8 @@ void setup() {
   httpUpdater.setup(&httpServer, UPDATE_PATH, UPDATE_USERNAME, UPDATE_PASSWORD);
   httpServer.begin();
 
-  Serial.println("HTTP server started on port " + HTTP_PORT);
-
-  char readyMessage[200];
-
-  Serial.printf(
-    "Update server ready! Open http://%s.local%s in your browser and login with username '%s' and password '%s'\n",
-    HOSTNAME, UPDATE_PATH, UPDATE_USERNAME, UPDATE_PASSWORD
-  );
+  // Show server information
+  ServerInformation();
 }
 
 void loop() {
