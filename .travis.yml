@@ -1,4 +1,6 @@
 language: c
+os: linux
+dist: bionic
 before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16"
   - sleep 3
@@ -8,10 +10,15 @@ before_install:
   - sudo mv arduino-1.8.12 /usr/local/share/arduino
   - sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
 install:
+  # Add custom boards
   - arduino --pref "boardsmanager.additional.urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json" --save-prefs
+  # Add custom libraries
   - arduino --install-library "ArduinoJson"
+  # Install board
   - arduino --install-boards esp8266:esp8266
+  # Set board
   - arduino --board esp8266:esp8266:generic --save-prefs
+  # Set options
   - arduino --pref "compiler.warning_level=all" --save-prefs
 script:
   - cp ./config.h.simple ./config.h
@@ -19,8 +26,6 @@ script:
   - echo $HOME
   - ls -al $PWD
   - arduino -v --verbose-build --verify $PWD/esp8266.ino
-  # after_success:
-  #   - bash <(curl -s https://codecov.io/bash)
 notifications:
   email:
     on_success: change
