@@ -1,5 +1,7 @@
 # ESP8266
 
+[![Build Status](https://travis-ci.org/yarkovaleksei/esp8266.svg?branch=master)](https://travis-ci.org/yarkovaleksei/esp8266)
+
 Пример прошивки и панели управления для микроконтроллера ESP8266.
 
 - - -
