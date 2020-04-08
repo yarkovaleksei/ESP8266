@@ -1,3 +1,5 @@
+#include "global.h"
+
 void setPinState(byte pin, byte state) {
   digitalWrite(pin, !state);
 }

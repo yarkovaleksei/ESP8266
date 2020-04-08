@@ -1,3 +1,5 @@
+#include "global.h"
+
 void routeFileList() {
   StaticJsonDocument<1024> json;
   JsonArray files = json.createNestedArray("files");

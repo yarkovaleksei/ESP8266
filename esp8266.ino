@@ -7,10 +7,11 @@
 #include <ArduinoJson.h>
 
 #include "config.h"
+#include "global.h"
 
 ESP8266WebServer httpServer(HTTP_PORT);
-ESP8266HTTPUpdateServer httpUpdater;
 FS* filesystem = &LittleFS;
+ESP8266HTTPUpdateServer httpUpdater;
 
 void setup() {
   Serial.begin(115200);

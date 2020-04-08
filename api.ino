@@ -1,3 +1,5 @@
+#include "global.h"
+
 void routeHealth() {
   StaticJsonDocument<500> json;
   String output;
