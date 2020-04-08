@@ -1,5 +1,7 @@
 #include "global.h"
 
+File fsUploadFile;
+
 void routeFileList() {
   StaticJsonDocument<1024> json;
   JsonArray files = json.createNestedArray("files");
@@ -15,6 +17,8 @@ void routeFileList() {
       fileItem["name"] = String(entry.name());
     }
 
+    fileItem["size"] = entry.size();
+
     files.add(fileItem);
     entry.close();
   }
@@ -28,7 +32,6 @@ void routeFileList() {
 void routeFileUpload() {
   HTTPUpload& upload = httpServer.upload();
   String filename = upload.filename;
-  File fsUploadFile;
 
   if (upload.status == UPLOAD_FILE_START) {
     if (!filename.startsWith("/")) {
