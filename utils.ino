@@ -8,13 +8,6 @@ byte getPinState(byte pin) {
   return digitalRead(pin);
 }
 
-void startBlynk() {
-  for (uint8_t i = 1; i < 7; i++) {
-    setPinState(LED_PIN, i % 2 == 0 ? LOW : HIGH);
-    delay(500);
-  }
-}
-
 void SPIFFSInformation() {
   Serial.println();
   Dir dir = filesystem->openDir("/");

@@ -5,9 +5,11 @@
 #include <FS.h>
 #include <LittleFS.h>
 #include <ArduinoJson.h>
+#include <Timer.h>
 
 #ifndef GLOBAL_DEFINES
 #define GLOBAL_DEFINES
 extern ESP8266WebServer httpServer;
 extern FS* filesystem;
+extern Timer timer;
 #endif

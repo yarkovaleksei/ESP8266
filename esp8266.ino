@@ -4,8 +4,12 @@
 ESP8266WebServer httpServer(HTTP_PORT);
 FS* filesystem = &LittleFS;
 ESP8266HTTPUpdateServer httpUpdater;
+Timer timer;
 
 void setup() {
+  // prepare GPIO2
+  pinMode(LED_PIN, OUTPUT);
+  setPinState(LED_PIN, LOW);
   Serial.begin(115200);
   delay(10);
   Serial.println();
@@ -16,11 +20,6 @@ void setup() {
 
   // Show SPIFFS information
   SPIFFSInformation();
-
-  // prepare GPIO2
-  pinMode(LED_PIN, OUTPUT);
-  startBlynk();
-  setPinState(LED_PIN, LOW);
 
   // Connect to WiFi network
   WiFi.mode(WIFI_STA);
@@ -37,6 +36,9 @@ void setup() {
     delay(1000);
     ESP.restart();
   }
+
+  // Blynk led test
+  timer.oscillate(LED_PIN, 500, HIGH, 3);
 
   // Show connection information
   ConnectionInformation();
@@ -77,6 +79,7 @@ void setup() {
 }
 
 void loop() {
+  timer.update();
   MDNS.update();
   httpServer.handleClient();
 }
