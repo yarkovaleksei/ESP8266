@@ -7,6 +7,10 @@ const uptimeContainer = document.querySelector('.uptime');
 const stateContainer = document.querySelector('.state');
 const buttons = document.querySelectorAll('.toggle-state');
 
+if (window.ESPSystem && window.ESPSystem.uptime) {
+    uptimeContainer.innerHTML = window.ESPSystem.uptime;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     (async () => {
         try {
