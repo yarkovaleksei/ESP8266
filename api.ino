@@ -12,9 +12,42 @@ void routeHealth() {
   json["uptime"]["minutes"] = minutes % 60;
   json["uptime"]["seconds"] = seconds % 60;
 
-  serializeJsonPretty(json, output);
+  serializeJson(json, output);
+
   httpServer.send(200, "application/json", output);
   output = String();
+}
+
+void routeSystemJs() {
+  char output[500];
+  int seconds = millis() / 1000;
+  int minutes = seconds / 60;
+  int hours = minutes / 60;
+
+  snprintf(
+    output,
+    500,
+    "window.ESPSystem = {\n\
+    uptime: \"%02d:%02d:%02d\",\n\
+    coreVersion: \"%s\",\n\
+    fullVersion: \"%s\",\n\
+    freeHeap: %d,\n\
+    cpuFreqMHz: %d,\n\
+    flashChipSize: %d,\n\
+    flashChipRealSize: %d,\n\
+    sketchSize: %d,\n\
+};",
+    hours, minutes % 60, seconds % 60,
+    ESP.getCoreVersion().c_str(),
+    ESP.getFullVersion().c_str(),
+    ESP.getFreeHeap(),
+    ESP.getCpuFreqMHz(),
+    ESP.getFlashChipSize(),
+    ESP.getFlashChipRealSize(),
+    ESP.getSketchSize()
+  );
+
+  httpServer.send(200, "application/javascript", output);
 }
 
 void routeGetPinState() {
@@ -26,7 +59,7 @@ void routeGetPinState() {
   String output;
 
   response["state"] = !getPinState(LED_PIN) ? 1  : 0;
-  serializeJsonPretty(response, output);
+  serializeJson(response, output);
   httpServer.send(200, "application/json", output);
   output = String();
 }
@@ -53,7 +86,7 @@ void routeSetPinState() {
 
   response["state"] = value;
   setPinState(LED_PIN, value);
-  serializeJsonPretty(response, output);
+  serializeJson(response, output);
   httpServer.send(200, "application/json", output);
   output = String();
 }

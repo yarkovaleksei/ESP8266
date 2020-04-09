@@ -57,6 +57,7 @@ void setup() {
    * The "/files" route section end
   */
 
+  httpServer.on("/system.js", HTTP_GET, routeSystemJs);
   httpServer.on("/health", HTTP_GET, routeHealth);
   httpServer.on("/gpio", HTTP_GET, routeGetPinState);
   httpServer.on("/gpio", HTTP_POST, routeSetPinState);

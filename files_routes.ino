@@ -24,7 +24,7 @@ void routeFileList() {
   }
 
   String output;
-  serializeJsonPretty(json, output);
+  serializeJson(json, output);
   httpServer.send(200, "application/json", output);
   output = String();
 }
